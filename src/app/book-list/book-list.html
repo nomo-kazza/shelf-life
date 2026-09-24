@@ -1,4 +1,13 @@
-@for (book of books; track book.id) {
+<section>
+    <p aria-live="polite">{{ finishedCount() }} of {{ books().length }} finished | {{ pagesReadCount() }} pages read | {{ progress() }}%</p>
+
+    <button type="button" (click)="toggleFilter()" 
+    [attr.aria-pressed]="showUnfinishedOnly()">
+        Unfinished only
+    </button>
+</section>
+
+@for (book of visibleBooks(); track book.id) {
     <article [class.long-read]="book.pages > 400">
         <img
             [src]="'https://covers.openlibrary.org/b/isbn/' + book.isbn + '-M.jpg'"
@@ -17,8 +26,15 @@
         } @else {
             <span class="badge">Not finished yet</span>
         }
+        <button type="button" (click)="toggleFinished(book.id)">
+            Mark as {{ book.finished ? 'unfinished' : 'finished' }}
+        </button>
     </article>
 } @empty {
-    <p>No book to be listed</p>
+    @if (books().length === 0) {
+        <p>No books in the list</p>
+    } @else {
+        <p>All caught up. Every book is finished.</p>
+    }
 }
 

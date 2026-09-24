@@ -1,0 +1,9 @@
+.goal {
+  padding: 1rem;
+  margin: 1rem 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+.goal button {
+  margin-right: 0.5rem;
+}

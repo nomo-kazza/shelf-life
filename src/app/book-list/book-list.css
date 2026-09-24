@@ -22,3 +22,9 @@ article .badge.finished {
     background-color: green;
     color: azure;
 }
+
+/* book-list.css */
+button[aria-pressed='true'] {
+  background: #222;
+  color: #fff;
+}
