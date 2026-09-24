@@ -1,0 +1,28 @@
+.site-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #ddd;
+}
+.site-header p {
+  margin: 0;
+  color: #555;
+}
+
+nav ul {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0.75rem 0 0;
+}
+nav a.active {
+  font-weight: 700;
+  text-decoration: underline;
+}
+.badge {
+  margin-left: 0.25rem;
+  padding: 0 0.4rem;
+  border-radius: 999px;
+  background: #222;
+  color: #fff;
+  font-size: 0.75rem;
+}

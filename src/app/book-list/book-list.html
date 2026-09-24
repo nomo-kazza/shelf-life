@@ -1,0 +1,24 @@
+@for (book of books; track book.id) {
+    <article [class.long-read]="book.pages > 400">
+        <img
+            [src]="'https://covers.openlibrary.org/b/isbn/' + book.isbn + '-M.jpg'"
+            [alt]="'Cover of ' + book.title"
+            width="120"
+            height="180"
+            loading="lazy"
+        />
+        <h2>{{book.title}}</h2>
+        <p>by {{book.author}}</p>
+        <p>Published {{book.year}}</p>
+        <p>{{book.pages}} pages | {{ book.pages > 400 ? 'Long read' : 'Quick read'}}</p>
+        <p>ISBN : {{book.isbn}}</p>
+        @if (book.finished) {
+            <span class="badge finished">Finished</span>
+        } @else {
+            <span class="badge">Not finished yet</span>
+        }
+    </article>
+} @empty {
+    <p>No book to be listed</p>
+}
+

@@ -1,0 +1,25 @@
+<header class="site-header">
+  <h1>{{ appName }}</h1>
+  <p>{{ tagline }}</p>
+
+  <nav aria-label="Main">
+    <ul>
+      @for (link of links; track link.path) {
+        <li>
+          <a
+            [href]="link.path"
+            [class.active]="link.path === currentPath"
+            [attr.aria-current]="link.path === currentPath ? 'page' : null"
+          >
+            {{ link.label }}
+            @if (link.count) {
+              <span class="badge">{{ link.count }}</span>
+            }
+          </a>
+        </li>
+      } @empty {
+        <li>No navigation links.</li>
+      }
+    </ul>
+  </nav>
+</header>
