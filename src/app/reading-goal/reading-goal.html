@@ -1,10 +1,8 @@
 <section class="goal" aria-labelledby="goal-heading">
   <h2 id="goal-heading">Reading goal</h2>
-
   <p aria-live="polite">
-    {{ dailyPages() }} pages a day · {{ weeklyPages() }} a week ({{ intensity() }})
+    {{ goal.dailyPages() }} pages a day · {{ goal.weeklyPages() }} a week ({{ intensity() }})
   </p>
-
-  <button type="button" (click)="decrease()" [disabled]="dailyPages() <= 5">−5</button>
-  <button type="button" (click)="increase()">+5</button>
+  <button type="button" (click)="goal.decrease()" [disabled]="goal.dailyPages() <= 5">−5</button>
+  <button type="button" (click)="goal.increase()">+5</button>
 </section>

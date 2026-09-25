@@ -9,12 +9,16 @@ import { Book } from '../book';
 })
 export class BookCard {
 
-  book = input.required<Book>();
-  toggled = output<number>()
+  readonly book = input.required<Book>();
+  readonly toggled = output<number>();
+  readonly removed = output<number>();
   protected readonly isLongRead = computed(() => this.book().pages > 400);
   protected readonly coverUrl = computed(() => `https://covers.openlibrary.org/b/isbn/${this.book().isbn}-M.jpg`);
 
-  toggleFinished(id: number) {
-    this.toggled.emit(id);
+  protected onToggle() {
+    this.toggled.emit(this.book().id);
+  }
+  protected onRemove() {
+    this.removed.emit(this.book().id);
   }
 }

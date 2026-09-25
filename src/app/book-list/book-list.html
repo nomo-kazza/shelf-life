@@ -1,6 +1,4 @@
 <section>
-    <p aria-live="polite">{{ finishedCount() }} of {{ books().length }} finished | {{ pagesReadCount() }} pages read | {{ progress() }}%</p>
-
     <button type="button" (click)="toggleFilter()" 
     [attr.aria-pressed]="showUnfinishedOnly()">
         Unfinished only
@@ -8,9 +6,9 @@
 </section>
 
 @for (book of visibleBooks(); track book.id) {
-    <app-book-card [book]="book" (toggled)="toggleFinished($event)" />
+    <app-book-card [book]="book" (toggled)="shelfStore.toggleFinished($event)" (removed)="shelfStore.removeBook($event)" />
 } @empty {
-    @if (books().length === 0) {
+    @if (shelfStore.allBooks().length === 0) {
         <p>No books in the list</p>
     } @else {
         <p>All caught up. Every book is finished.</p>

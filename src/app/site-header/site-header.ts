@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ReadingGoalStore } from '../reading-goal-store';
 
 interface NavLink {
   label: string;
@@ -20,4 +21,5 @@ export class SiteHeader {
     { label: 'My shelf', path: '/shelf', count: 3 },
     { label: 'Stats', path: '/stats' },
   ];
+  protected readonly goal = inject(ReadingGoalStore);
 }

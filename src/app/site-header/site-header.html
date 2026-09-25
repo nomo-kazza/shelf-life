@@ -2,6 +2,8 @@
   <h1>{{ appName }}</h1>
   <p>{{ tagline }}</p>
 
+  <p>Today's goal: {{ goal.dailyPages() }} pages</p>
+
   <nav aria-label="Main">
     <ul>
       @for (link of links; track link.path) {
