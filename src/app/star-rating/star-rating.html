@@ -1,0 +1,12 @@
+<div class="stars">
+  @for (star of stars(); track star) {
+    <button
+      type="button"
+      [class.filled]="star <= value()"
+      [attr.aria-label]="'Rate ' + star + ' of ' + max()"
+      (click)="select(star)"
+    >
+      {{ star <= value() ? '★' : '☆' }}
+    </button>
+  }
+</div>

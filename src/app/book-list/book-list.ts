@@ -1,8 +1,9 @@
 import { Component, computed, signal } from '@angular/core';
 import { Book } from '../book';
+import { BookCard } from '../book-card/book-card';
 
 @Component({
-  imports: [],
+  imports: [BookCard],
   selector: 'app-book-list',
   styleUrl: './book-list.css',
   templateUrl: './book-list.html',

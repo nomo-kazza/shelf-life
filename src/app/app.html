@@ -1,5 +1,9 @@
 <app-site-header />
 <main>
+
     <app-reading-goal />
     <app-book-list />
+    
+    <app-star-rating [value]="myRating()" (rated)="myRating.set($event)" />
+    <p>You rated: {{ myRating() }}</p>
 </main>

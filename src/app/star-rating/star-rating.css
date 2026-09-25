@@ -1,0 +1,10 @@
+.stars button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #999;
+}
+.stars button.filled {
+  color: #d4a017;
+}

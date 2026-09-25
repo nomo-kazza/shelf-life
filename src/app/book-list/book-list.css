@@ -1,27 +1,4 @@
-article {
-    border: 1px solid #ccc;
-    max-width: fit-content;
-    padding: 20px;
-    margin-top: 10px;
-}
-article.long-read {
-    border-left: 2px solid green;
-}
-article p {
-    font-size: 16px;
-}
 
-article .badge {
-    display: block;
-    background-color: aqua;
-    color: black;
-    border-radius: 2px;
-    padding: 2px;
-}
-article .badge.finished {
-    background-color: green;
-    color: azure;
-}
 
 /* book-list.css */
 button[aria-pressed='true'] {

@@ -1,6 +1,23 @@
-<article class="book-card-container">
-    <h2>{{ title }}</h2>
-    <p>By {{ author }}</p>
-    <p>Published {{ year }}</p>
-    <p>{{ pages }} pages | {{ pages > 400 ? 'Long read' : 'Quick read'}}</p>
-</article>
+
+<article [class.long-read]="isLongRead()">
+        <img
+            [src]="coverUrl()"
+            [alt]="'Cover of ' + book().title"
+            width="120"
+            height="180"
+            loading="lazy"
+        />
+        <h2>{{book().title}}</h2>
+        <p>by {{book().author}}</p>
+        <p>Published {{book().year}}</p>
+        <p>{{book().pages}} pages | {{ isLongRead() ? 'Long read' : 'Quick read'}}</p>
+        <p>ISBN : {{book().isbn}}</p>
+        @if (book().finished) {
+            <span class="badge finished">Finished</span>
+        } @else {
+            <span class="badge">Not finished yet</span>
+        }
+        <button type="button" (click)="toggleFinished(book().id)">
+            Mark as {{ book().finished ? 'unfinished' : 'finished' }}
+        </button>
+    </article>

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
+import { Book } from '../book';
 
 @Component({
   imports: [],
@@ -7,8 +8,13 @@ import { Component } from '@angular/core';
   templateUrl: './book-card.html',
 })
 export class BookCard {
-  protected readonly title = "First book title";
-  protected readonly author = 'First book author';
-  protected readonly year = 2021;
-  protected readonly pages = 300;
+
+  book = input.required<Book>();
+  toggled = output<number>()
+  protected readonly isLongRead = computed(() => this.book().pages > 400);
+  protected readonly coverUrl = computed(() => `https://covers.openlibrary.org/b/isbn/${this.book().isbn}-M.jpg`);
+
+  toggleFinished(id: number) {
+    this.toggled.emit(id);
+  }
 }
