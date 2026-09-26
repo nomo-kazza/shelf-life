@@ -11,6 +11,7 @@
         <p>Published {{currentBook.year}}</p>
         <p>{{currentBook.pages}} pages | {{ isLongRead() ? 'Long read' : 'Quick read'}}</p>
         <p>ISBN : {{currentBook.isbn}}</p>
+        <app-author-info [name]="currentBook.author" />
         @if (currentBook.finished) {
             <span class="badge finished">Finished</span>
         } @else {

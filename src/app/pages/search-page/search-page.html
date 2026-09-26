@@ -1,0 +1,45 @@
+<form class="search-form" (submit)="onSearch($event, queryInput.value)">
+    <label for="search">Search for a book:</label>
+    <input type="text" id="search" name="search" #queryInput />
+    <button type="submit">Search</button>
+</form>
+ @if (query() === '') {
+    <p>Search by title or author to add books</p>
+} @else if (searchResource.isLoading()) {
+    <p role="status">Loading search results…</p>
+  } @else if (searchResource.error()) {
+    <p role="alert">
+      Couldn't load search.
+      <button type="button" (click)="searchResource.reload()">Try again</button>
+    </p>
+  } @else {
+    @if (searchResults().length > 0) {
+      <ul class="search-results">
+        @for (result of searchResults(); track result.key) {
+          <li>
+            @if (result.cover_i) {
+              <img [src]="'https://covers.openlibrary.org/b/id/' + result.cover_i + '-S.jpg'" alt="{{ result.title }} cover" width="50" height="75" />
+            } @else {
+              <div class="no-cover">No cover</div>
+            }
+            <p>{{ result.title }} by {{ result.author_name?.join(', ') ?? 'Unknown Author' }}</p>
+            <p>
+                @if (result.first_publish_year) {
+                  <span>{{ result.first_publish_year }} </span>
+                }
+                @if (result.number_of_pages_median) {
+                  <span>| {{ result.number_of_pages_median }} pages</span>
+                }
+            </p>
+            @if (isOnShelf(result)) {
+              <span>On your shelf</span>
+            } @else {
+              <button type="button" (click)="onAddBook(result)">Add to shelf</button>
+            }
+          </li>
+        }
+      </ul>
+    } @else {
+      <p>No results found.</p>
+    }
+  }

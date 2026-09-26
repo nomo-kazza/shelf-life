@@ -1,1 +1,19 @@
-<p>author-info works!</p>
+<section class="author-info" aria-labelledby="author-heading">
+  <h3 id="author-heading">About the author</h3>
+
+  @if (authorResource.isLoading()) {
+    <p role="status">Loading author info…</p>
+  } @else if (authorResource.error()) {
+    <p role="alert">
+      Couldn't load author info.
+      <button type="button" (click)="authorResource.reload()">Try again</button>
+    </p>
+  } @else {
+    @if (author(); as a) {
+      <p>{{ a.name }}@if (a.birth_date) { (born {{ a.birth_date }})}</p>
+      <p>{{ a.work_count }} works · best known for <em>{{ a.top_work }}</em></p>
+    } @else {
+      <p>No author info found.</p>
+    }
+  }
+</section>

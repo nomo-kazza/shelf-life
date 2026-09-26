@@ -18,6 +18,11 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/book-detail-page/book-detail-page').then((m) => m.BookDetailPage),
   },
   {
+    path: 'search',
+    title: 'Search · ShelfLife',
+    loadComponent: () => import('./pages/search-page/search-page').then((m) => m.SearchPage),
+  },
+  {
     path: '**',
     title: 'Page not found · ShelfLife',
     loadComponent: () =>

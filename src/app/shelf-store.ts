@@ -1,4 +1,4 @@
-import { computed, InputSignalWithTransform, Service, signal } from '@angular/core';
+import { computed, Service, signal } from '@angular/core';
 import { Book } from './book';
 
 @Service()
@@ -62,6 +62,13 @@ export class ShelfStore {
 
     removeBook(bookId: number): void {
         this.books.update((books) => books.filter((book) => book.id !== bookId));
+    }
+
+    addBook(newBook: Omit<Book, 'id' | 'finished'>): void {
+        this.books.update((books) => [...books, {...newBook,
+            id: Math.max(0, ...books.map(item => item.id)) + 1,
+            finished: false
+        }]);
     }
 }
 

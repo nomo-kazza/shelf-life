@@ -14,4 +14,8 @@ export class ReadingGoalStore {
   decrease(): void {
     this.pages.update((p) => Math.max(5, p - 5));
   }
+
+  setDailyPages(pages: number): void {
+    this.pages.set(pages);
+}
 }
