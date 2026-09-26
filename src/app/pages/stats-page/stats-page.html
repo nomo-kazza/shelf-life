@@ -1,0 +1,12 @@
+<!-- stats-page.html -->
+<h2>Reading stats</h2>
+<app-shelf-stats />
+
+<h3>Finished books</h3>
+<ul>
+  @for (book of shelf.finishedBooks(); track book.id) {
+    <li>{{ book.title }} ({{ book.pages }} pages)</li>
+  } @empty {
+    <li>Nothing finished yet.</li>
+  }
+</ul>

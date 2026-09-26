@@ -8,15 +8,8 @@
     <ul>
       @for (link of links; track link.path) {
         <li>
-          <a
-            [href]="link.path"
-            [class.active]="link.path === currentPath"
-            [attr.aria-current]="link.path === currentPath ? 'page' : null"
-          >
+          <a [routerLink]="link.path" routerLinkActive="active" ariaCurrentWhenActive="page">
             {{ link.label }}
-            @if (link.count) {
-              <span class="badge">{{ link.count }}</span>
-            }
           </a>
         </li>
       } @empty {

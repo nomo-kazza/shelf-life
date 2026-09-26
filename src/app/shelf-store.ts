@@ -1,4 +1,4 @@
-import { computed, Service, signal } from '@angular/core';
+import { computed, InputSignalWithTransform, Service, signal } from '@angular/core';
 import { Book } from './book';
 
 @Service()

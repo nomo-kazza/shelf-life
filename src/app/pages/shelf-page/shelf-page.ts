@@ -1,9 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { ReadingGoal } from '../../reading-goal/reading-goal';
+import { ShelfStats } from '../../shelf-stats/shelf-stats';
+import { BookList } from '../../book-list/book-list';
 
 @Component({
-  imports: [],
   selector: 'app-shelf-page',
-  styleUrl: './shelf-page.css',
+  imports: [ReadingGoal, ShelfStats, BookList],
   templateUrl: './shelf-page.html',
 })
-export class ShelfPage {}
+export class ShelfPage {
+  readonly filter = input<string>();
+}

@@ -1,0 +1,30 @@
+@if (book(); as currentBook) {
+    <article [class.long-read]="isLongRead()">
+        <img
+            [src]="coverUrl()"
+            [alt]="'Cover of ' + currentBook.title"
+            width="240"
+            height="360"
+        />
+        <h2>{{currentBook.title}}</h2>
+        <p>by {{currentBook.author}}</p>
+        <p>Published {{currentBook.year}}</p>
+        <p>{{currentBook.pages}} pages | {{ isLongRead() ? 'Long read' : 'Quick read'}}</p>
+        <p>ISBN : {{currentBook.isbn}}</p>
+        @if (currentBook.finished) {
+            <span class="badge finished">Finished</span>
+        } @else {
+            <span class="badge">Not finished yet</span>
+        }
+        <button type="button" (click)="onToggle()">
+            Mark as {{ currentBook.finished ? 'unfinished' : 'finished' }}
+        </button>
+        <button type="button" (click)="onRemove()">
+            Remove
+        </button>
+    </article>
+} @else {
+    <p>Book not found</p>
+}
+
+<a routerLink="/shelf">Back to your shelf</a>

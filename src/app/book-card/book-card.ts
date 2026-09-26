@@ -1,14 +1,14 @@
 import { Component, computed, input, output } from '@angular/core';
 import { Book } from '../book';
+import { RouterLink } from '@angular/router';
 
 @Component({
-  imports: [],
+  imports: [RouterLink],
   selector: 'app-book-card',
   styleUrl: './book-card.css',
   templateUrl: './book-card.html',
 })
 export class BookCard {
-
   readonly book = input.required<Book>();
   readonly toggled = output<number>();
   readonly removed = output<number>();

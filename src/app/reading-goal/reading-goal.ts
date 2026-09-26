@@ -17,8 +17,8 @@ export class ReadingGoal {
   });
 
   constructor() {
-    effect(() => {
-      document.title = `ShelfLife · ${this.goal.dailyPages()} pages/day`;
-    });
+    // effect(() => {
+    //   document.title = `ShelfLife · ${this.goal.dailyPages()} pages/day`;
+    // });
   }
 }

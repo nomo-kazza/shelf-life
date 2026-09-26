@@ -1,26 +1,26 @@
 
 <article [class.long-read]="isLongRead()">
-        <img
-            [src]="coverUrl()"
-            [alt]="'Cover of ' + book().title"
-            width="120"
-            height="180"
-            loading="lazy"
-        />
-        <h2>{{book().title}}</h2>
-        <p>by {{book().author}}</p>
-        <p>Published {{book().year}}</p>
-        <p>{{book().pages}} pages | {{ isLongRead() ? 'Long read' : 'Quick read'}}</p>
-        <p>ISBN : {{book().isbn}}</p>
-        @if (book().finished) {
-            <span class="badge finished">Finished</span>
-        } @else {
-            <span class="badge">Not finished yet</span>
-        }
-        <button type="button" (click)="onToggle()">
-            Mark as {{ book().finished ? 'unfinished' : 'finished' }}
-        </button>
-        <button type="button" (click)="onRemove()">
-            Remove
-        </button>
-    </article>
+    <img
+        [src]="coverUrl()"
+        [alt]="'Cover of ' + book().title"
+        width="120"
+        height="180"
+        loading="lazy"
+    />
+    <h2><a [routerLink]="['/books', book().id]">{{book().title}}</a></h2>
+    <p>by {{book().author}}</p>
+    <p>Published {{book().year}}</p>
+    <p>{{book().pages}} pages | {{ isLongRead() ? 'Long read' : 'Quick read'}}</p>
+    <p>ISBN : {{book().isbn}}</p>
+    @if (book().finished) {
+        <span class="badge finished">Finished</span>
+    } @else {
+        <span class="badge">Not finished yet</span>
+    }
+    <button type="button" (click)="onToggle()">
+        Mark as {{ book().finished ? 'unfinished' : 'finished' }}
+    </button>
+    <button type="button" (click)="onRemove()">
+        Remove
+    </button>
+</article>
