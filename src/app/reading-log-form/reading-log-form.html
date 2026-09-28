@@ -1,0 +1,57 @@
+<form (submit)="onSubmit($event)" novalidate>  
+    <label for="currentPage">Current Page:</label>
+    <input 
+        id="currentPage" 
+        type="number" 
+        [attr.aria-invalid]="logForm.currentPage().touched() && logForm.currentPage().invalid()" 
+        [formField]="logForm.currentPage"
+        aria-describedby="current-page-error" />
+
+    <div id="current-page-error">
+        @if (logForm.currentPage().touched() && logForm.currentPage().invalid()) {
+            <ul class="errors">
+                @for (error of logForm.currentPage().errors(); track error.kind) {
+                <li>{{ error.message }}</li>
+                }
+            </ul>
+        }
+  </div>
+
+    <label for="rating">Rating:</label>
+     <select 
+        id="rating" 
+        [formField]="logForm.rating" 
+        aria-describedby="rating-error">
+        <option value="0">Not rated</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+
+    <label for="notes">Notes:</label>
+    <textarea 
+        id="notes" 
+        [formField]="logForm.notes" 
+        [attr.aria-invalid]="logForm.notes().touched() && logForm.notes().invalid()"
+        aria-describedby="notes-error">
+    </textarea>
+
+    <p>{{ counter() }} / 500</p>
+
+    <div id="notes-error">
+        @if (logForm.notes().touched() && logForm.notes().invalid()) {
+            <ul class="errors">
+                @for (error of logForm.notes().errors(); track error.kind) {
+                <li>{{ error.message }}</li>
+                }
+            </ul>
+        }
+    </div>
+
+    <button type="submit">Save Log</button>
+    <p role="status" class="status-msg" [class]="statusMessage().type === 'error' ? 'errors' : ''">
+        {{ statusMessage().text }}
+    </p>
+</form>

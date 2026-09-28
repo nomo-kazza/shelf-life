@@ -12,3 +12,13 @@ form {
 input[aria-invalid='true'] {
   border-color: #b00020;
 }
+
+.status-msg {
+    color: #49a231;
+    margin: 0;
+    padding-left: 1.25rem;
+    font-size: 0.875rem;
+}
+.status-msg.errors {
+    color: #b00020;
+}

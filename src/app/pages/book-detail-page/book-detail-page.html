@@ -1,4 +1,5 @@
 @if (book(); as currentBook) {
+    <app-reading-log-form [book]="currentBook" />
     <article [class.long-read]="isLongRead()">
         <img
             [src]="coverUrl()"

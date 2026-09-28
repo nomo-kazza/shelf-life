@@ -12,7 +12,7 @@ export class BookCard {
   readonly book = input.required<Book>();
   readonly toggled = output<number>();
   readonly removed = output<number>();
-  protected readonly isLongRead = computed(() => this.book().pages > 400);
+  protected readonly isLongRead = computed(() => (this.book().pages ?? 0) > 400);
   protected readonly coverUrl = computed(() => `https://covers.openlibrary.org/b/isbn/${this.book().isbn}-M.jpg`);
 
   protected onToggle() {

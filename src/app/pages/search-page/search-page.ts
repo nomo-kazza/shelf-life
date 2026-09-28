@@ -63,7 +63,7 @@ export class SearchPage {
       title: book.title,
       author: book.author_name?.join(', ') ?? 'Unknown Author',
       year: book.first_publish_year ?? 0,
-      pages: book.number_of_pages_median ?? 0,
+      pages: book.number_of_pages_median,
       isbn: book.isbn?.[0] ?? '',
     };
     this.shelf.addBook(newBook);

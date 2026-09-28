@@ -12,6 +12,9 @@
     <p>Published {{book().year}}</p>
     <p>{{book().pages}} pages | {{ isLongRead() ? 'Long read' : 'Quick read'}}</p>
     <p>ISBN : {{book().isbn}}</p>
+    @if(book().currentPage) {
+        <p>Page {{book().currentPage}} of {{book().pages}}</p>
+    }
     @if (book().finished) {
         <span class="badge finished">Finished</span>
     } @else {

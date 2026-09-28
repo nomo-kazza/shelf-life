@@ -2,9 +2,10 @@ import { Component, computed, inject, input, numberAttribute } from '@angular/co
 import { Router, RouterLink } from '@angular/router';
 import { ShelfStore } from '../../shelf-store';
 import { AuthorInfo } from '../../author-info/author-info';
+import { ReadingLogForm } from '../../reading-log-form/reading-log-form';
 
 @Component({
-  imports: [RouterLink, AuthorInfo],
+  imports: [RouterLink, AuthorInfo, ReadingLogForm],
   selector: 'app-book-detail-page',
   styleUrl: './book-detail-page.css',
   templateUrl: './book-detail-page.html',

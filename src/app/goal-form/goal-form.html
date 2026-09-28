@@ -1,1 +1,23 @@
-<p>goal-form works!</p>
+<form (submit)="onSubmit($event)" novalidate>
+  <label for="daily-pages">Pages per day</label>
+  <input
+    id="daily-pages"
+    type="number"
+    [formField]="goalForm.dailyPages"
+    [attr.aria-invalid]="goalForm.dailyPages().touched() && goalForm.dailyPages().invalid()"
+    aria-describedby="daily-pages-errors"
+  />
+
+  <div id="daily-pages-errors">
+    @if (goalForm.dailyPages().touched() && goalForm.dailyPages().invalid()) {
+      <ul class="errors">
+        @for (error of goalForm.dailyPages().errors(); track error.kind) {
+          <li>{{ error.message }}</li>
+        }
+      </ul>
+    }
+  </div>
+
+  <button type="submit">Save goal</button>
+  <p role="status">{{ statusMessage() }}</p>
+</form>

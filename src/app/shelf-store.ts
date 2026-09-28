@@ -46,7 +46,7 @@ export class ShelfStore {
  
     readonly finishedBooks = computed(() => this.books().filter((book) => book.finished));
     readonly finishedCount = computed(() => this.finishedBooks().length);
-    readonly pagesReadCount = computed(() => this.finishedBooks().reduce((total, book) => total + book.pages, 0));
+    readonly pagesReadCount = computed(() => this.finishedBooks().reduce((total, book) => total + (book.pages ?? 0) , 0));
     readonly progress = computed(() => {
         const totalBooks = this.books().length;
         return totalBooks > 0 ? Math.round((this.finishedCount() / totalBooks) * 100) : 0;
@@ -69,6 +69,13 @@ export class ShelfStore {
             id: Math.max(0, ...books.map(item => item.id)) + 1,
             finished: false
         }]);
+    }
+    updateLog(bookId: number, log: Pick<Book, 'currentPage' | 'rating' | 'notes'>): void {
+        this.books.update((books) =>
+            books.map((book) =>
+                book.id === bookId ? { ...book, ...log } : book
+            )
+        );
     }
 }
 
