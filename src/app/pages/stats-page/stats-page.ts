@@ -10,4 +10,8 @@ import { GoalForm } from '../../goal-form/goal-form';
 })
 export class StatsPage {
   protected readonly shelf = inject(ShelfStore);
+
+  protected resetToSampleBooks() {
+    this.shelf.resetToSampleBooks();
+  }
 }

@@ -1,0 +1,9 @@
+.storage-warning {
+	margin: 0 0 1.25rem;
+	padding: 0.875rem 1rem;
+	border: 1px solid #a84228;
+	border-radius: 0.5rem;
+	background: #fff3ed;
+	color: #612515;
+	line-height: 1.5;
+}
