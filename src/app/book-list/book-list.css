@@ -1,7 +1,46 @@
 
 
-/* book-list.css */
-button[aria-pressed='true'] {
+.shelf-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.sort-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.sort-group > span {
+  margin-right: 0.25rem;
+}
+
+.shelf-toolbar button {
+  min-height: 2.5rem;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid #767676;
+  border-radius: 0.375rem;
+  background: #fff;
+  color: #222;
+  font: inherit;
+  cursor: pointer;
+}
+
+.shelf-toolbar button:hover,
+.shelf-toolbar button[aria-checked='true'] {
+  background: #eee;
+}
+
+.shelf-toolbar button[aria-pressed='true'] {
   background: #222;
   color: #fff;
+}
+
+.shelf-toolbar button:focus-visible {
+  outline: 3px solid #1769aa;
+  outline-offset: 2px;
 }

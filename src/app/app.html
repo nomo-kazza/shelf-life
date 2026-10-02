@@ -5,3 +5,5 @@
     <app-star-rating [value]="myRating()" (rated)="myRating.set($event)" />
     <p>You rated: {{ myRating() }}</p>
 </main>
+
+<div class="visually-hidden" role="status">{{ announcer.message() }}</div>

@@ -7,7 +7,7 @@
             width="240"
             height="360"
         />
-        <h2>{{currentBook.title}}</h2>
+        <h2 #pageHeading tabindex="-1">{{currentBook.title}}</h2>
         <p>by {{currentBook.author}}</p>
         <p>Published {{currentBook.year}}</p>
         <p>{{currentBook.pages}} pages | {{ isLongRead() ? 'Long read' : 'Quick read'}}</p>
@@ -26,7 +26,7 @@
         </button>
     </article>
 } @else {
-    <p>Book not found</p>
+    <h2 #pageHeading tabindex="-1">Book not found</h2>
 }
 
 <a routerLink="/shelf">Back to your shelf</a>

@@ -12,10 +12,12 @@ describe('StatsPage', () => {
 
     fixture = TestBed.createComponent(StatsPage);
     component = fixture.componentInstance;
+    fixture.detectChanges();
     await fixture.whenStable();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+    expect(document.activeElement).toBe(fixture.nativeElement.querySelector('h2'));
   });
 });

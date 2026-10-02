@@ -1,17 +1,27 @@
-<section>
-    <button type="button" (click)="toggleFilter()" 
-    [attr.aria-pressed]="showUnfinishedOnly()">
+<div class="shelf-toolbar" ngToolbar aria-label="Shelf controls">
+    <button #filterButton ngToolbarWidget type="button" (click)="toggleFilter()"
+        [attr.aria-pressed]="showUnfinishedOnly()">
         Unfinished only
     </button>
-</section>
+
+    <div class="sort-group" ngToolbarWidgetGroup role="radiogroup" aria-labelledby="sort-label">
+        <span id="sort-label">Sort</span>
+        <button ngToolbarWidget type="button" role="radio" [attr.aria-checked]="sortBy() === 'title'"
+            (click)="sortBy.set('title')">Title</button>
+        <button ngToolbarWidget type="button" role="radio" [attr.aria-checked]="sortBy() === 'year'"
+            (click)="sortBy.set('year')">Year</button>
+        <button ngToolbarWidget type="button" role="radio" [attr.aria-checked]="sortBy() === 'pages'"
+            (click)="sortBy.set('pages')">Pages</button>
+    </div>
+</div>
 
 @for (book of visibleBooks(); track book.id) {
-    <app-book-card [book]="book" (toggled)="shelfStore.toggleFinished($event)" (removed)="shelfStore.removeBook($event)" />
+    <app-book-card [book]="book" (toggled)="shelfStore.toggleFinished($event)" (removed)="onRemoved($event)" />
 } @empty {
     @if (shelfStore.allBooks().length === 0) {
-        <p>No books in the list</p>
+        <p #emptyState tabindex="-1">No books in the list</p>
     } @else {
-        <p>All caught up. Every book is finished.</p>
+        <p #emptyState tabindex="-1">All caught up. Every book is finished.</p>
     }
 } 
 

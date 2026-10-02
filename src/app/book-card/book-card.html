@@ -7,7 +7,7 @@
         height="180"
         loading="lazy"
     />
-    <h2><a [routerLink]="['/books', book().id]">{{book().title}}</a></h2>
+    <h2><a [routerLink]="['/books', book().id]" #titleLink>{{book().title}}</a></h2>
     <p>by {{book().author}}</p>
     <p>Published {{book().year}}</p>
     <p>{{book().pages}} pages | {{ isLongRead() ? 'Long read' : 'Quick read'}}</p>

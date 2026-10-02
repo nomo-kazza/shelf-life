@@ -1,5 +1,5 @@
 import { httpResource } from '@angular/common/http';
-import { Component, computed, inject, signal } from '@angular/core';
+import { afterNextRender, Component, computed, ElementRef, inject, Injector, signal, viewChild } from '@angular/core';
 import { ShelfStore } from '../../shelf-store';
 
 interface SearchResult {
@@ -23,8 +23,14 @@ interface SearchResponse {
   templateUrl: './search-page.html',
 })
 export class SearchPage {
+  private readonly injector = inject(Injector);
+  private readonly pageHeading = viewChild<ElementRef<HTMLHeadingElement>>('pageHeading');
   protected readonly query = signal('');
   protected readonly shelf = inject(ShelfStore);
+
+  constructor() {
+    afterNextRender(() => this.pageHeading()?.nativeElement.focus(), { injector: this.injector });
+  }
 
     protected readonly searchResource = httpResource<SearchResponse>(() => {
       const q = this.query().trim();
@@ -41,6 +47,19 @@ export class SearchPage {
   protected readonly searchResults = computed<SearchResult[]>(() =>
     this.searchResource.hasValue() ? this.searchResource.value().docs : [],
   );
+
+  protected readonly searchStatus = computed(() => {
+    const query = this.query().trim();
+    if (!query || this.searchResource.error()) return '';
+    if (this.searchResource.isLoading()) return 'Searching…';
+    if (!this.searchResource.hasValue()) return '';
+
+    const count = this.searchResults().length;
+    return count === 0
+      ? `No results for "${query}"`
+      : `${count} ${count === 1 ? 'result' : 'results'} for "${query}"`;
+  });
+
   protected onSearch(event: Event, query: string): void {
     event.preventDefault();
     this.query.set(query.trim());

@@ -1,4 +1,4 @@
-import { Component, computed, inject, input, numberAttribute } from '@angular/core';
+import { afterNextRender, Component, computed, ElementRef, inject, Injector, input, numberAttribute, viewChild } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { ShelfStore } from '../../shelf-store';
 import { AuthorInfo } from '../../author-info/author-info';
@@ -11,12 +11,18 @@ import { ReadingLogForm } from '../../reading-log-form/reading-log-form';
   templateUrl: './book-detail-page.html',
 })
 export class BookDetailPage {
+  private readonly injector = inject(Injector);
+  private readonly pageHeading = viewChild<ElementRef<HTMLHeadingElement>>('pageHeading');
   private readonly router = inject(Router);
   readonly id = input.required({ transform: numberAttribute });
   protected readonly shelf = inject(ShelfStore);
   protected readonly book = computed(() => this.shelf.allBooks().find((book) => book.id === this.id()));
   protected readonly isLongRead = computed(() => (this.book()?.pages ?? 0) > 400);
   protected readonly coverUrl = computed(() => `https://covers.openlibrary.org/b/isbn/${this.book()?.isbn}-L.jpg`);
+
+  constructor() {
+    afterNextRender(() => this.pageHeading()?.nativeElement.focus(), { injector: this.injector });
+  }
 
   protected onToggle(): void {
     this.shelf.toggleFinished(this.id());

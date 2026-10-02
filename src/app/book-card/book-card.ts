@@ -1,4 +1,4 @@
-import { Component, computed, input, output } from '@angular/core';
+import { Component, computed, ElementRef, input, output, viewChild } from '@angular/core';
 import { Book } from '../book';
 import { RouterLink } from '@angular/router';
 
@@ -9,6 +9,7 @@ import { RouterLink } from '@angular/router';
   templateUrl: './book-card.html',
 })
 export class BookCard {
+  protected readonly titleLink = viewChild.required<ElementRef<HTMLAnchorElement>>('titleLink')
   readonly book = input.required<Book>();
   readonly toggled = output<number>();
   readonly removed = output<number>();
@@ -20,5 +21,8 @@ export class BookCard {
   }
   protected onRemove() {
     this.removed.emit(this.book().id);
+  }
+  public focusTitle() {
+    this.titleLink().nativeElement.focus();
   }
 }

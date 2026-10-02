@@ -14,11 +14,13 @@ describe('ShelfPage', () => {
     }).compileComponents();
   });
 
-  it('should create', () => {
+  it('should create and focus the page heading', async () => {
     fixture = TestBed.createComponent(ShelfPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    await fixture.whenStable();
     expect(component).toBeTruthy();
+    expect(document.activeElement).toBe(fixture.nativeElement.querySelector('h2'));
   });
 
   it('announces a saved-shelf recovery message when loading is not clean', async () => {

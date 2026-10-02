@@ -11,8 +11,9 @@ describe('StarRating', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(StarRating);
+    fixture.componentRef.setInput('value', 4);
     component = fixture.componentInstance;
-    await fixture.whenStable();
+    fixture.detectChanges();
   });
 
   it('should create', () => {
